@@ -47,6 +47,13 @@ def login(request):
 
 def logout_request(request):
     logout(request)
-    
-    messages.info(request,"you have successfully logged out")
+
+    messages.info(request, "you have successfully logged out")
     return redirect("login/")
+
+
+def permission(request):
+    if request.user.is_anonymous:
+        return redirect("login")
+    elif not request.user.is_staff:
+        raise Http404
