@@ -12,6 +12,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+        
 # class Event(models.Model):
 #     Name = models.CharField(max_length=150)
 #     image = models.ImageField()

@@ -9,6 +9,8 @@ from .forms import LoginForm, NewUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
+from django.http import Http404
+
 
 def home(request: HttpRequest) -> HTTPResponse:
     return render(request, "home.html")
@@ -41,3 +43,10 @@ def login(request):
                 return redirect("home/")
     context = {"LoginForm": form}
     return render(request, "login.html", context)
+
+
+def logout_request(request):
+    logout(request)
+    
+    messages.info(request,"you have successfully logged out")
+    return redirect("login/")
