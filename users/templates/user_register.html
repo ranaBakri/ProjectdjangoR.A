@@ -1,76 +1,31 @@
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-        footer {
-          text-align: left;
-          padding: 0.2px;;
-          background-color: rgb(1, 25, 35);
-          color: rgb(245, 247, 248);
-          font: status-bar,oblique;
-        }
-     
-        </style>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
     <title>Register</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-      crossorigin="anonymous"
-    />
-</head>
-<nav class="d-flex flex-column min-vh-100 bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+    {% endblock title %}
+    {% block content %}
                 {%if not request.user.is_authenticated %}
                     <a class="nav-link" href="{% url 'home' %}">
                     Home <span class="sr-only">(current)</span>
                     </a>
                 {% endif %}  
-            </li>
-        </ul>
-        </div>
-    </nav>
 
 
 
 
         <main class="bg-light h-100">
         <h1>Please Register</h1>
-        <form method ="post">
-            {% csrf_token %}
-            {{ Register }}
-            <button type="submit"><a href="{% url 'home' %}">Register</a></button>
+        <form action="{% url 'register' %}" method ="POST">
+            {% csrf_token %} {{ form | crispy }}
+            <button type="submit">Register</button>
             
         </form>
-        <div><footer>
-            <h1>About us</h1>
-            <h5>Building great business stories.
-            We are an independent partner who knows Marketing & Advertising agencies' competitive landscape. Tell us your needs and we'll tell you the agencies you must meet.</h5>
-            
-            <img>
-            <img src="https://static.vecteezy.com/system/resources/previews/009/384/296/original/call-us-buttons-clipart-design-illustration-free-png.png" alt="Call us" width="50" height="50"><h3>987456321</h3>
-            </img>  
-            </h2><a href="event@gmail.com">event@gmail.com</a></h2>
-        </footer>
-          </div>
-
+        
+        
         </main>
-</html>
+    {% endblock content%}
