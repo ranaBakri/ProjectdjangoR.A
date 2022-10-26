@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
+    "events",
     "crispy_forms",
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -117,7 +118,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = "static/"
 
 # Default primary key field type

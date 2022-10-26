@@ -11,19 +11,19 @@ class Event(models.Model):
         small_party = "SP"
         big_part = "Bp"
     name = models.CharField(max_length=150)
-    image = models.ImageField(default="")
+    image = models.ImageField()
     organiser = models.CharField(max_length=150)
-    number_OfSeats = models.IntegerField()
-    number_OfBookSeats = models.IntegerField()
-    date_OfEvent = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
+    available_seats = models.IntegerField()
+    booked_seats = models.IntegerField()
+    date = models.DateTimeField()
+    # modified_at = models.DateTimeField(auto_now=True)
 
 
-class Admin(models.Model):
-    aid = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=20)
-    email = models.CharField(max_length=40)
-    password = models.CharField(max_length=20)
+# class Admin(models.Model):
+#     aid = models.AutoField(primary_key=True)
+#     name = models.CharField(max_length=20)
+#     email = models.CharField(max_length=40)
+#     password = models.CharField(max_length=20)
 
 
 class Book_event(models.Model):

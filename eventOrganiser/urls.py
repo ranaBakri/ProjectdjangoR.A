@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from users.views import user_register, home, login_view, logout_request
 from events.views import get_event
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,6 +26,10 @@ urlpatterns = [
     path("home/", home, name="home"),
     path("login/", login_view, name="login"),
     path("logout/", logout_request, name="logout"),
-    path("event_list/", get_event, name="event_list"),
+    path("events/", get_event, name="event-list"),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
