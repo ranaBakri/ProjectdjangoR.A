@@ -7,13 +7,13 @@
     <div class="row">
       {% for event in events %}
       <div class="col-4">
-        <div class ="card" style ="width: 18rem">
+       <a href="event-detail.html"><div class ="card" style ="width: 18rem">
           <img class ="card-body">
           <p>{{event.name}}</p>
           <img src={{event.image.url}} alt="birthday"/>
           <p>Available Seats: {{event.available_seats}}</p>
-          <p>{{event.booked_seats}}</p>
-        </div>
+          <p>Booked Seats:{{event.booked_seats}}</p>
+        </div></a>
       </div>
     </div >
     {% endfor %}

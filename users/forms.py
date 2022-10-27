@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User,BookEvent
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -15,3 +15,8 @@ class NewUserForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(required=True)
     password = forms.CharField(required=True, widget=forms.PasswordInput())
+
+class BookEventForm(forms.ModelForm):
+    class Meta:
+        model = BookEvent
+        fields = ["numbers_of_seats","event","participint"]

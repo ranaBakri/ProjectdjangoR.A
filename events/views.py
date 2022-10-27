@@ -6,6 +6,8 @@ from events.forms import EventItemForm
 
 # Create your views here.
 
+def Done(request):
+    return render(request, "Done.html")
 
 def get_event(request):
     events = Event.objects.all()
@@ -55,3 +57,6 @@ def update_event(request, event_id):
 def delete_event(request, event_id):
     Event.objects.get(id=event_id).delete()
     return redirect("event_list")
+
+
+

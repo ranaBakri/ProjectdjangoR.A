@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}
+<title>DetailPage</title>
+{% endblock title %} {% block content %}
+<form class="container py-2 bg-light" method="POST">
+  {% csrf_token %} {{ form | crispy }}
+  <button class="btn btn-dark" type="submit">
+    <a class="t" href="{%url 'Done'%}">Book</a>
+  </button>
+</form>
+{% endblock content%}

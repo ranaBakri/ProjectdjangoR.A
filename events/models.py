@@ -1,7 +1,10 @@
-from django.db import models
 
+from django.db import models
+from django.contrib.auth import get_user_model
+# from users.models import BookEvent
 # Create your models here.
 
+User = get_user_model()
 
 class Event(models.Model):
     class EventKind(models.TextChoices):
@@ -12,10 +15,12 @@ class Event(models.Model):
         big_part = "Bp"
     name = models.CharField(max_length=150)
     image = models.ImageField()
-    organiser = models.CharField(max_length=150)
+    organiser = models.ForeignKey(User,on_delete=models.CASCADE)
     available_seats = models.IntegerField()
     booked_seats = models.IntegerField()
     date = models.DateTimeField()
+    def __str__(self):
+        return self.name
     # modified_at = models.DateTimeField(auto_now=True)
 
 
@@ -26,14 +31,6 @@ class Event(models.Model):
 #     password = models.CharField(max_length=20)
 
 
-class Book_event(models.Model):
-    bid = models.AutoField(primary_key=True)
-    uid = models.IntegerField()
-    name = models.CharField(max_length=20)
-    date = models.DateField()
-    time = models.TimeField()
-    mobile = models.CharField(max_length=10)
 
 
-def __str__(self):
-    return self.name
+

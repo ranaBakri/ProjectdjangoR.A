@@ -13,10 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from turtle import done
 from django.contrib import admin
 from django.urls import path
-from users.views import user_register, home, login_view, logout_request
-from events.views import get_event
+from events.models import Event
+from users.models import BookEvent
+from users.views import user_register, home, login_view, logout_request,book_event
+from events.views import get_event,Done
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,7 +30,8 @@ urlpatterns = [
     path("login/", login_view, name="login"),
     path("logout/", logout_request, name="logout"),
     path("events/", get_event, name="event-list"),
-
+    path("Done/", Done, name="Done"),
+    path("booking/",book_event,name="bookEvent"),
 ]
 
 if settings.DEBUG:
