@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, NewUserForm , BookEventForm
+from .forms import LoginForm, NewUserForm, BookEventForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.http import Http404
@@ -54,19 +54,19 @@ def permission(request):
         return redirect("login")
     elif not request.user.is_staff:
         raise Http404
-    
+
 
 def book_event(request):
     form = BookEventForm()
-    if request.method =="POST":
+    if request.method == "POST":
         form = BookEventForm(request.POST)
         if form.is_valid():
-            booking =form.save(commit=False)
-            booking.event.organiser=request.user
+            booking = form.save(commit=False)
+            booking.event.organiser = request.user
             booking.save()
             return redirect("Done")
-   
+
     context = {
         "form": form,
     }
-    return render (request, 'eventBooking.html',context)
+    return render(request, 'eventBooking.html', context)

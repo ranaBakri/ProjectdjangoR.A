@@ -8,10 +8,11 @@ from .models import Event
 class EventItemForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ["name", "image", "organiser", "available_seats",
+        fields = ["name", "image", "available_seats",
                   "booked_seats", "date"]
-        
 
 
-
-
+class CreateEvent(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'

@@ -9,6 +9,7 @@ from events.forms import EventItemForm
 def Done(request):
     return render(request, "Done.html")
 
+
 def get_event(request):
     events = Event.objects.all()
     new_event = []
@@ -28,10 +29,12 @@ def get_event(request):
 
 
 def create_event_item(request):
-    form = EventItemForm.object()
+    form = EventItemForm()
     if request.method == "POST":
-        form = EventItemForm(request.POST)
+        print("post")
+        form = EventItemForm(request.POST, request.FILES)
         if form.is_valid():
+            print("valid")
             form.save()
             return redirect("event_list")
     context = {"form": form}
@@ -57,6 +60,3 @@ def update_event(request, event_id):
 def delete_event(request, event_id):
     Event.objects.get(id=event_id).delete()
     return redirect("event_list")
-
-
-

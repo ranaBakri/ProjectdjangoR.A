@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from events.models import Event
 from users.models import BookEvent
-from users.views import user_register, home, login_view, logout_request,book_event
-from events.views import get_event,Done
+from users.views import user_register, home, login_view, logout_request, book_event
+from events.views import delete_event, get_event, Done, delete_event, create_event_item
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -31,7 +31,10 @@ urlpatterns = [
     path("logout/", logout_request, name="logout"),
     path("events/", get_event, name="event-list"),
     path("Done/", Done, name="Done"),
-    path("booking/",book_event,name="bookEvent"),
+    path("booking/", book_event, name="bookEvent"),
+    path("add/createevent/", create_event_item, name="createevent"),
+    path("delete/createevent/", delete_event, name="delete"),
+
 ]
 
 if settings.DEBUG:
