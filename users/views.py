@@ -1,7 +1,9 @@
+from asyncio import events
+from unicodedata import name
 from django.shortcuts import render, redirect
 from .forms import LoginForm, NewUserForm, BookEventForm
 from django.contrib.auth import authenticate, login, logout
-
+from events.models import Event
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm
 
@@ -11,10 +13,7 @@ def home(request):
 
 
 def user_register(request):
-    print("in")
     form = NewUserForm()
-    print("called")
-    print("here: ", request.method)
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
@@ -49,13 +48,6 @@ def logout_request(request):
     return redirect("login")
 
 
-def permission(request):
-    if request.user.is_anonymous:
-        return redirect("login")
-    elif not request.user.is_staff:
-        raise Http404
-
-
 def book_event(request):
     form = BookEventForm()
     if request.method == "POST":
@@ -63,7 +55,7 @@ def book_event(request):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.event.organiser = request.user
-            booking.save()
+            booking.save(request.user)
             return redirect("Done")
 
     context = {

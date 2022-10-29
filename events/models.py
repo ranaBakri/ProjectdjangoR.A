@@ -1,7 +1,8 @@
 
+from random import choices
 from django.db import models
 from django.contrib.auth import get_user_model
-# from users.models import BookEvent
+
 # Create your models here.
 
 User = get_user_model()

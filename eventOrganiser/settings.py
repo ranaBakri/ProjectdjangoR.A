@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "crispy_forms",
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+LOGIN_URL = 'login/'
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -71,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "eventOrganiser.wsgi.application"
-LOGIN_URL = '/login/'
 
 
 # Database
@@ -121,6 +122,8 @@ USE_TZ = True
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = "static/"
+
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

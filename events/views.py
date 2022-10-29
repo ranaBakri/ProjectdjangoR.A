@@ -10,7 +10,7 @@ def Done(request):
     return render(request, "Done.html")
 
 
-def get_event(request):
+def get_events(request):
     events = Event.objects.all()
     new_event = []
     for event in events:
