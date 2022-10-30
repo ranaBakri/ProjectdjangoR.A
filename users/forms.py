@@ -21,4 +21,4 @@ class LoginForm(forms.Form):
 class BookEventForm(forms.ModelForm):
     class Meta:
         model = BookEvent
-        fields = ["numbers_of_seats", "event", "participint"]
+        fields = ["numbers_of_seats"]

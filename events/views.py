@@ -29,13 +29,16 @@ def get_events(request):
 
 
 def create_event_item(request):
+    print("called")
     form = EventItemForm()
     if request.method == "POST":
         print("post")
         form = EventItemForm(request.POST, request.FILES)
         if form.is_valid():
+            create = form.save(commit=False)
+            create.organiser = request.user
             print("valid")
-            form.save()
+            create.save()
             return redirect("event_list")
     context = {"form": form}
     return render(request, 'create_event.html', context)
@@ -50,8 +53,10 @@ def update_event(request, event_id):
             form.save()
             return redirect("event_list")
     context = {
-        "event": event,
         "form": form,
+        "event": {
+            "id": event_id,
+        }
     }
 
     return render(request, 'create_event', context)

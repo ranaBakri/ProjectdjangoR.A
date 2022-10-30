@@ -24,4 +24,4 @@ class BookEvent(models.Model):
     participint = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.participint.name} has booked '
+        return f'{self.participint.username} has booked '

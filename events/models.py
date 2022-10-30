@@ -16,7 +16,7 @@ class Event(models.Model):
         small_party = "SP"
         big_part = "Bp"
     name = models.CharField(max_length=150, choices=EventKind.choices)
-    image = models.ImageField()
+    image = models.ImageField(blank=True)
     organiser = models.ForeignKey(User, on_delete=models.CASCADE)
     available_seats = models.PositiveIntegerField()
     booked_seats = models.PositiveIntegerField()

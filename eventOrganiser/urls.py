@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from turtle import done
+# from turtle import done
 from django.contrib import admin
 from django.urls import path
 from events.models import Event
@@ -31,8 +31,9 @@ urlpatterns = [
     path("logout/", logout_request, name="logout"),
     path("events/", get_events, name="event-list"),
     path("Done/", Done, name="Done"),
-    path("booking/", book_event, name="bookEvent"),
-    path("add/createevent/", create_event_item, name="createevent"),
+    path("booking/<int:event_id>/", book_event, name="bookEvent"),
+    path("add/createevent/",
+         create_event_item, name="createevent"),
     path("delete/createevent/", delete_event, name="delete"),
 ]
 

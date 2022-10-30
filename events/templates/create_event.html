@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}
 <title>Create Event</title>
 {% endblock title %} {% block content %}
-<form class="container py-2 bg-light" method="POST">
+<form class="container py-2 bg-light" action="{% url 'createevent' %}" method="POST">
   {% csrf_token %} {{ form | crispy }}
   <button class="btn btn-dark" type="submit">
     <a class="t" href="{%url 'home'%}">Create</a>

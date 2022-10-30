@@ -1,12 +1,11 @@
-from asyncio import events
-from unicodedata import name
+# from unicodedata import name
 from django.shortcuts import render, redirect
 from .forms import LoginForm, NewUserForm, BookEventForm
 from django.contrib.auth import authenticate, login, logout
 from events.models import Event
 from users.models import BookEvent
-from django.http import Http404
-from django.contrib.auth.forms import UserCreationForm
+# from django.http import Http404
+# from django.contrib.auth.forms import UserCreationForm
 
 
 def home(request):
@@ -49,18 +48,22 @@ def logout_request(request):
     return redirect("login")
 
 
-def book_event(request):
+def book_event(request, event_id):
+    event = Event.objects.get(id=event_id)
     form = BookEventForm()
     if request.method == "POST":
         form = BookEventForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
-            booking.event.organiser = request.user
-            BookEvent.objects.create(user=request.user, event=events)
-            booking.save(request.user)
+            booking.participint = request.user
+            booking.event = event
+            booking.save()
             return redirect("Done")
 
     context = {
         "form": form,
+        "event": {
+            "id": event_id,
+        }
     }
     return render(request, 'eventBooking.html', context)

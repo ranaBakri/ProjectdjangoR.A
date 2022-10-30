@@ -3,12 +3,13 @@
 {% endblock title %} {% block content %}
 <form
   class="container py-2 bg-light"
-  action="{% url 'bookEvent' %}"
+  action="{% url 'bookEvent' event_id=event.id %}"
   method="POST"
 >
   {% csrf_token %} {{ form | crispy }}
   <button class="btn btn-dark" type="submit">
-    <a class="t" href="{%url 'Done'%}">Book</a>
+    Book
   </button>
 </form>
 {% endblock content%}
+
