@@ -34,7 +34,6 @@ urlpatterns = [
     path("booking/", book_event, name="bookEvent"),
     path("add/createevent/", create_event_item, name="createevent"),
     path("delete/createevent/", delete_event, name="delete"),
-
 ]
 
 if settings.DEBUG:

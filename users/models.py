@@ -17,11 +17,11 @@ User = get_user_model()
 
 
 class BookEvent(models.Model):
-    user = models.ForeignKey(
-        User, related_name="user_booking", on_delete=models.CASCADE)
+    # user = models.ForeignKey(
+    # User, on_delete=models.CASCADE)
     numbers_of_seats = models.PositiveIntegerField()
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     participint = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.participint.name} has book '
+        return f'{self.participint.name} has booked '

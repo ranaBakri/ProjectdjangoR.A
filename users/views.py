@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import LoginForm, NewUserForm, BookEventForm
 from django.contrib.auth import authenticate, login, logout
 from events.models import Event
+from users.models import BookEvent
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm
 
@@ -55,6 +56,7 @@ def book_event(request):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.event.organiser = request.user
+            BookEvent.objects.create(user=request.user, event=events)
             booking.save(request.user)
             return redirect("Done")
 

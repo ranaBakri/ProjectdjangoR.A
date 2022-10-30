@@ -1,6 +1,6 @@
 from dataclasses import field, fields
-from pyexpat import model
-from statistics import mode
+#from pyexpat import model
+#from statistics import model
 from django import forms
 from .models import Event
 
